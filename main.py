@@ -2,6 +2,7 @@ import requests
 from datetime import datetime
 from dotenv import load_dotenv
 import os
+
 load_dotenv()
 
 SHEETY_ENDPOINT =  "https://api.sheety.co/c6583818d10ceba595ae749cfc283c9b/myWorkouts/workouts"
