@@ -1,106 +1,111 @@
-Workout Tracker with Nutritionix & Sheety Integration
+# Workout Tracker with Nutritionix & Sheety Integration
 
-This project is a simple Workout Tracker that allows you to log exercises using the Nutritionix API to calculate calorie burn and the Sheety API to store the workout data in a Google Spreadsheet.
-Features
+This project is a simple **Workout Tracker** that allows you to log exercises using the **Nutritionix API** to calculate calorie burn and the **Sheety API** to store the workout data in a Google Spreadsheet.
 
-    User Input: The app accepts user input about exercises and processes them through the Nutritionix API to calculate the duration and calories burned.
-    Google Spreadsheet Logging: Logs the workout data (exercise name, duration, and calories burned) into a Google Sheet via the Sheety API.
-    Error Handling: Proper error handling for API requests to ensure the application does not crash on failures.
+## Features
 
-Technologies
+- **User Input**: The app accepts user input about exercises and processes them through the **Nutritionix API** to calculate the duration and calories burned.
+- **Google Spreadsheet Logging**: Logs the workout data (exercise name, duration, and calories burned) into a Google Sheet via the **Sheety API**.
+- **Error Handling**: Proper error handling for API requests to ensure the application does not crash on failures.
 
-    Python: Main programming language.
-    Nutritionix API: To process exercises and calculate calorie burn.
-    Sheety API: To log the exercises into a Google Spreadsheet.
-    dotenv: For managing environment variables securely.
+## Technologies
 
-Prerequisites
+- **Python**: Main programming language.
+- **Nutritionix API**: To process exercises and calculate calorie burn.
+- **Sheety API**: To log the exercises into a Google Spreadsheet.
+- **dotenv**: For managing environment variables securely.
+
+## Prerequisites
 
 To run this project, you will need:
 
-    A Nutritionix account to access their API:
-        Sign up at Nutritionix Developer and get your x-app-id and x-app-key.
+1. A **Nutritionix** account to access their API:
+   - Sign up at [Nutritionix Developer](https://www.nutritionix.com/business/api) and get your `x-app-id` and `x-app-key`.
+   
+2. A **Sheety** account to access their API:
+   - Sign up at [Sheety](https://sheety.co/) and create a new project. Set up a Google Spreadsheet for logging the workout data and get your API URL and Bearer token.
 
-    A Sheety account to access their API:
-        Sign up at Sheety and create a new project. Set up a Google Spreadsheet for logging the workout data and get your API URL and Bearer token.
+3. **Python 3.x** installed on your system.
 
-    Python 3.x installed on your system.
+4. **dotenv** to handle environment variables. You can install it using the following command:
+   ```bash
+   pip install python-dotenv
 
-    dotenv to handle environment variables. You can install it using the following command:
+## Setup Instructions
 
-    bash
+1. Clone the repository:
 
-    pip install python-dotenv
+    ```bash
+    git clone https://github.com/yourusername/workout-tracker.git
+    cd workout-tracker
+    ```
 
-Setup Instructions
+2. Install the required Python packages:
 
-    Clone the repository:
+    ```bash
+    pip install requests python-dotenv
+    ```
 
-    bash
+3. Create a `.env` file in the root directory with your API keys:
 
-git clone https://github.com/yourusername/workout-tracker.git
-cd workout-tracker
+    ```bash
+    touch .env
+    ```
 
-Install the required Python packages:
+4. Inside `.env`, add your API credentials:
 
-bash
+    ```bash
+    NUTRI_APPLICATION_ID=your_nutritionix_app_id
+    NUTRI_API_KEY=your_nutritionix_api_key
+    SHEETY_TOKEN=your_sheety_bearer_token
+    ```
 
-pip install requests python-dotenv
+5. Update the `SHEETY_ENDPOINT` in the Python file to match your Sheety API endpoint. This endpoint will look something like:
 
-Create a .env file in the root directory with your API keys:
+    ```bash
+    https://api.sheety.co/your_project_id/myWorkouts/workouts
+    ```
 
-bash
+6. Run the Python script:
 
-touch .env
-
-Inside .env, add your API credentials:
-
-bash
-
-NUTRI_APPLICATION_ID=your_nutritionix_app_id
-NUTRI_API_KEY=your_nutritionix_api_key
-SHEETY_TOKEN=your_sheety_bearer_token
-
-Update the SHEETY_ENDPOINT in the Python file to match your Sheety API endpoint. This endpoint will look something like:
-
-bash
-
-https://api.sheety.co/your_project_id/myWorkouts/workouts
-
-Run the Python script:
-
-bash
-
+    ```bash
     python main.py
+    ```
 
-    Enter the exercises you performed when prompted, and the workout data will be logged to your Google Spreadsheet automatically!
+7. Enter the exercises you performed when prompted, and the workout data will be logged to your Google Spreadsheet automatically!
 
-Usage
+## Usage
 
 When running the script, you will be prompted to enter the exercises you performed:
 
-bash
-
-Tell me which exercises you did: 
 
 You can enter exercises in a natural language format (e.g., "ran 3 miles", "swam for 30 minutes"), and the program will process them, calculate the calories burned, and log the data in your Google Spreadsheet.
-Example
 
-    Input:
+## Example
 
-    bash
+- **Input**:
 
-Tell me which exercises you did:
-ran 3 miles
+    ```bash
+    ran 3 miles
+    ```
 
-Output:
+- **Output**:
 
-json
-
-    {"workout": {"date": "18/10/2024", "time": "12:30:45", "exercise": "ran 3 miles", "duration": 30, "calories": 350}}
+    ```json
+    {
+      "workout": {
+        "date": "18/10/2024",
+        "time": "12:30:45",
+        "exercise": "ran 3 miles",
+        "duration": 30,
+        "calories": 350
+      }
+    }
+    ```
 
 The workout will be added to your Google Sheet with the current date, time, exercise, duration, and calories burned.
-Error Handling
 
-    If there's an issue with the Nutritionix API, the script will display an error message and skip logging that entry.
-    If there's an issue posting data to Sheety, it will also handle the error and provide a message without crashing the script.
+## Error Handling
+
+- If there's an issue with the **Nutritionix API**, the script will display an error message and skip logging that entry.
+- If there's an issue posting data to **Sheety**, it will also handle the error and provide a message without crashing the script.
